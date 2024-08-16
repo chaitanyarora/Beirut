@@ -1,13 +1,13 @@
-name: Run btest
+name: Run Blender on Windows
 
 on:
   push:
     branches:
-      - main  # or specify any branch you want
+      - main  # Adjust the branch name as needed
 
 jobs:
-  run-btest-job:
-    runs-on: ubuntu-latest
+  run-blender-job:
+    runs-on: windows-latest
 
     steps:
     - name: Checkout repository
@@ -16,23 +16,24 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11'  # Specify your Python version
+        python-version: '3.x'  # Specify your Python version
 
-    - name: Install dependencies
+    - name: Install Chocolatey
       run: |
-        python -m pip install --upgrade pip
-    
+        Set-ExecutionPolicy Bypass -Scope Process -Force; `
+        [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; `
+        iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
     - name: Install Blender
       run: |
-        sudo apt-get update
-        sudo apt-get install -y blender
-    
+        choco install blender -y
+
+    - name: Find Blender Path
+      run: |
+        $blenderPath = (Get-Command blender | Select-Object -ExpandProperty Source)
+        Write-Output "Blender Path: $blenderPath"
+
     - name: Run btest.py
       run: |
         python btest.py
-
-
-    
-  
-  
 
