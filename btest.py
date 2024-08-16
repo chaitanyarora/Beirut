@@ -4,7 +4,7 @@ import os
 cwd = os.path.dirname(os.path.abspath(__file__))
 print("BUTNYYYYY", cwd)
 
-blender_executable = r"/blender_only/blender.exe"
+blender_executable = r"/home/runner/work/Beirut/Beirut/blender_only/blender.exe"
 blend_file_paths = "path_to_your_file.blend"
 test_script_paths = "path_to_your_script.py"
 
