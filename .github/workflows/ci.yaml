@@ -1,23 +1,35 @@
-name: CI Pipeline
+name: Run btest
 
 on:
   push:
     branches:
-      - main
+      - main  # or specify any branch you want
 
 jobs:
-  test:
+  run-btest-job:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Blender
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'  # Specify your Python version
+
+    - name: Install dependencies
       run: |
+        python -m pip install --upgrade pip
         sudo apt-get update
         sudo apt-get install -y blender
 
-    - name: Execute .blend file
+    - name: Run btest.py
       run: |
-        blender -b path_to_your_file.blend -P path_to_your_script.py
+        python btest.py
+
+
+    
+  
+  
+
