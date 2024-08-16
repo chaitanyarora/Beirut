@@ -2,7 +2,7 @@ import subprocess
 import os
 
 cwd = os.path.dirname(os.path.abspath(__file__))
-print(cwd)
+print("BUTNYYYYY", cwd)
 
 blender_executable = r"/blender_only/blender.exe"
 blend_file_paths = "path_to_your_file.blend"
