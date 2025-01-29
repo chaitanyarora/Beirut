@@ -1,0 +1,20 @@
+# Ignore Python virtual environment
+venv/
+__pycache__/
+
+# Ignore Node.js dependencies
+node_modules/
+
+# Ignore environment files
+.env
+.env.local
+
+# Ignore system files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Ignore build artifacts
+frontend/build/
+backend/__pycache__/
+backend/database/__pycache__/
